@@ -1,1 +1,1 @@
-window.ASI_SUPABASE={url:"",key:""};
+window.ASI_SUPABASE={url:"https://lkeemgjfnmgymuvklyhs.supabase.co",key:""};
