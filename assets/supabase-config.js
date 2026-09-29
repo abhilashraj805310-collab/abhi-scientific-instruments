@@ -1,1 +1,1 @@
-window.ASI_SUPABASE={url:"https://lkeemgjfnmgymuvklyhs.supabase.co",key:""};
+window.ASI_SUPABASE={url:"https://lkeemgjfnmgymuvklyhs.supabase.co",key:"sb_publishable_85UNumHMaiXEu0gRHYHcwA_s33DF1hB"};
