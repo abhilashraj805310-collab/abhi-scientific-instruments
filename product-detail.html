@@ -60,6 +60,13 @@ const image=p.image_url?'<img src="'+esc(p.image_url)+'" alt="'+esc(p.name)+'">'
 el.className='detail-grid';
 el.innerHTML='<div class="detail-image">'+image+'</div><div class="detail-info"><span class="kicker">PRODUCT DETAILS</span><h1>'+esc(p.name)+'</h1>'+(p.model_no?'<div class="badges"><span class="badge">Model: '+esc(p.model_no)+'</span><span class="badge">'+esc(p.category)+'</span></div>':'<div class="badges"><span class="badge">'+esc(p.category)+'</span></div>')+'<p class="lead">'+esc(p.short_description||'')+'</p><div class="detail-actions"><a class="btn" href="contact.html?product='+encodeURIComponent(p.name)+'">Request a Quote →</a>'+(p.pdf_url?'<a class="btn light" href="'+esc(p.pdf_url)+'" target="_blank" rel="noopener">Download Catalogue PDF</a>':'')+'</div><div class="detail-description">'+esc(p.description||'')+'</div></div><div class="spec-panel" style="grid-column:1/-1"><h2>Technical Specifications</h2>'+(specs?'<table class="spec-table"><tbody>'+specs+'</tbody></table>':'<p class="detail-description">Specifications will be added soon.</p>')+'</div>';
 document.title=p.name+' | Abhi Scientific Instruments';
+const pageDesc=(p.short_description||p.description||('Laboratory instrument from Abhi Scientific Instruments.')).replace(/\s+/g,' ').trim().slice(0,155);
+const meta=document.querySelector('meta[name="description"]'); if(meta) meta.setAttribute('content',pageDesc);
+const canonical=document.querySelector('link[rel="canonical"]'); if(canonical) canonical.setAttribute('href',location.href.split('#')[0]);
+document.querySelector('meta[property="og:title"]')?.setAttribute('content',document.title);
+document.querySelector('meta[property="og:description"]')?.setAttribute('content',pageDesc);
+const productSchema={"@context":"https://schema.org","@type":"Product","name":p.name,"description":pageDesc,"image":p.image_url?[p.image_url]:undefined,"sku":p.model_no||undefined,"brand":{"@type":"Brand","name":"Abhi Scientific Instruments"},"url":location.href.split('#')[0]};
+const schema=document.createElement('script'); schema.type='application/ld+json'; schema.textContent=JSON.stringify(productSchema).replace(/</g,'\\u003c'); document.head.appendChild(schema);
 }catch(e){console.error(e);el.innerHTML='<div class="error-box"><h1>Unable to load product</h1><p>'+esc(e.message||'Please try again.')+'</p><a class="btn" href="products.html">← Back to Products</a></div>'}
 })();
 </script>
