@@ -447,7 +447,7 @@ button{font:inherit}
 .no-result{display:none;text-align:center;padding:40px;color:var(--muted);grid-column:1/-1}
 @media(max-width:720px){.catalog-bar{align-items:stretch}.search{width:100%}}
 </style>
-</head>
+<link rel="stylesheet" href="assets/site-polish.css?v=20260929-2"></head>
 <body>
 <nav class="nav">
 <a class="brand" href="index.html"><span class="brand-logo real-logo" aria-label="ASI logo"><svg viewBox="0 0 64 64" role="img" aria-hidden="true"><defs><linearGradient id="asiG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#03045e"/><stop offset=".55" stop-color="#0077b6"/><stop offset="1" stop-color="#00b4d8"/></linearGradient></defs><rect x="2" y="2" width="60" height="60" rx="16" fill="url(#asiG)"/><text x="32" y="39" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="800" fill="#fff">ASI</text></svg></span><span>Abhi Scientific Instruments</span></a>
@@ -516,15 +516,15 @@ button{font:inherit}
 <div class="wrap copy">© 2026 Abhi Scientific Instruments. All rights reserved.</div>
 </footer>
 
-<script src="assets/script.js?v=20260928-6"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="assets/supabase-config.js"></script><script src="assets/public-products.js?v=20260929-1"></script>
+<script src="assets/script.js?v=20260929-2"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="assets/supabase-config.js"></script><script src="assets/public-products.js?v=20260929-1"></script>
 <script>
-const buttons=document.querySelectorAll('.filter');
-const cards=document.querySelectorAll('.p-card');
 const search=document.getElementById('productSearch');
 const empty=document.getElementById('noResult');
 let active='all';
 function applyFilter(){
- const q=(search.value||'').trim().toLowerCase(); let visible=0;
+ const q=(search?.value||'').trim().toLowerCase();
+ const cards=document.querySelectorAll('#productGrid .p-card');
+ let visible=0;
  cards.forEach(card=>{
    const okCat=active==='all'||card.dataset.cat===active;
    const okSearch=!q||card.dataset.name.includes(q)||card.textContent.toLowerCase().includes(q);
@@ -532,10 +532,14 @@ function applyFilter(){
    card.style.display=show?'flex':'none';
    if(show)visible++;
  });
- empty.style.display=visible?'none':'block';
+ if(empty)empty.style.display=visible?'none':'block';
 }
-buttons.forEach(btn=>btn.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));btn.classList.add('active');active=btn.dataset.filter;applyFilter()}));
-search.addEventListener('input',applyFilter);
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active'); active=btn.dataset.filter; applyFilter();
+}));
+search?.addEventListener('input',applyFilter);
+window.addEventListener('asi:catalogue-loaded',applyFilter);
 </script>
 </body>
 </html>
