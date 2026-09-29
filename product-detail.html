@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product Details | Abhi Scientific Instruments</title>
+<meta name="description" content="Laboratory instrument product details, specifications and catalogue information from Abhi Scientific Instruments.">
+<link rel="stylesheet" href="assets/style.css?v=20260929-1">
+<style>
+.detail-hero{padding:55px 0 70px;background:linear-gradient(135deg,#eafaff,#fff 60%,#f4fbfd)}
+.detail-grid{display:grid;grid-template-columns:minmax(320px,.9fr) minmax(0,1.1fr);gap:45px;align-items:start}
+.detail-image{min-height:420px;display:grid;place-items:center;padding:28px;background:#fff;border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow-soft)}
+.detail-image img{max-width:100%;max-height:460px;object-fit:contain;border-radius:16px}
+.detail-placeholder{font-size:5rem;color:var(--blue);width:160px;height:160px;display:grid;place-items:center;border-radius:30px;background:linear-gradient(145deg,#e8fbff,#bcebf4)}
+.detail-info h1{margin:8px 0 12px;color:var(--navy);font-size:clamp(2.2rem,5vw,4rem);line-height:1.05}
+.detail-info .lead{color:var(--muted);font-size:1.05rem}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.badge{padding:6px 10px;border-radius:999px;background:#edfaff;border:1px solid #d6f0f6;color:#27637b;font-size:.78rem;font-weight:800}
+.spec-panel{margin-top:28px;padding:28px;background:#fff;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-soft)}
+.spec-panel h2{margin:0 0 18px;color:var(--navy)}
+.spec-table{width:100%;border-collapse:collapse}.spec-table td{padding:11px 8px;border-bottom:1px solid #e6f0f4;vertical-align:top}.spec-table td:first-child{font-weight:800;color:var(--navy);width:35%}.spec-table td:last-child{color:var(--muted)}
+.detail-description{margin-top:28px;color:var(--muted);white-space:pre-line}
+.detail-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.loading{text-align:center;padding:100px 20px;color:var(--muted)}
+.error-box{text-align:center;padding:70px 20px}.error-box h1{color:var(--navy)}
+@media(max-width:800px){.detail-grid{grid-template-columns:1fr}.detail-image{min-height:300px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+<a class="brand" href="index.html"><span class="brand-logo"></span><span>Abhi Scientific Instruments</span></a>
+<button class="menu" aria-label="Open menu">☰</button>
+<div class="navlinks"><a href="index.html">Home</a><a class="active" href="products.html">Products</a><a href="applications.html">Applications</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+</nav>
+<main>
+<section class="detail-hero">
+<div class="wrap">
+<div id="content" class="loading">Loading product details…</div>
+</div>
+</section>
+</main>
+<footer class="footer"><div class="wrap foot"><div><h3>Abhi Scientific Instruments</h3><p>Scientific & laboratory instruments for education, healthcare, research and industry.</p></div><div><h3>Quick Links</h3><a href="products.html">Products</a><a href="applications.html">Applications</a><a href="about.html">About</a></div><div><h3>Contact</h3><a href="contact.html">Request a Quote</a><a href="mailto:info@abhiscientificinstruments.co.in">Email Us</a></div></div><div class="wrap copy">© 2026 Abhi Scientific Instruments. All rights reserved.</div></footer>
+<script src="assets/script.js?v=20260929-1"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js?v=20260929-1"></script>
+<script>
+(async()=>{
+const el=document.getElementById('content'), c=window.ASI_SUPABASE||{};
+const slug=new URLSearchParams(location.search).get('slug');
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+if(!slug){el.innerHTML='<div class="error-box"><h1>Product not found</h1><p>Please select a product from the catalogue.</p><a class="btn" href="products.html">← Back to Products</a></div>';return}
+if(!c.url||!c.key){el.innerHTML='<div class="error-box"><h1>Catalogue connection pending</h1><p>The public Supabase Publishable Key has not been connected yet.</p><a class="btn" href="products.html">← Back to Products</a></div>';return}
+try{
+const sb=supabase.createClient(c.url,c.key);
+const {data:p,error}=await sb.from('products').select('*').eq('slug',slug).eq('published',true).maybeSingle();
+if(error)throw error;
+if(!p){el.innerHTML='<div class="error-box"><h1>Product not found</h1><p>This product is unavailable or unpublished.</p><a class="btn" href="products.html">← Back to Products</a></div>';return}
+const specs=Object.entries(p.specifications||{}).map(([k,v])=>'<tr><td>'+esc(k)+'</td><td>'+esc(v)+'</td></tr>').join('');
+const image=p.image_url?'<img src="'+esc(p.image_url)+'" alt="'+esc(p.name)+'">':'<div class="detail-placeholder">◇</div>';
+el.className='detail-grid';
+el.innerHTML='<div class="detail-image">'+image+'</div><div class="detail-info"><span class="kicker">PRODUCT DETAILS</span><h1>'+esc(p.name)+'</h1>'+(p.model_no?'<div class="badges"><span class="badge">Model: '+esc(p.model_no)+'</span><span class="badge">'+esc(p.category)+'</span></div>':'<div class="badges"><span class="badge">'+esc(p.category)+'</span></div>')+'<p class="lead">'+esc(p.short_description||'')+'</p><div class="detail-actions"><a class="btn" href="contact.html?product='+encodeURIComponent(p.name)+'">Request a Quote →</a>'+(p.pdf_url?'<a class="btn light" href="'+esc(p.pdf_url)+'" target="_blank" rel="noopener">Download Catalogue PDF</a>':'')+'</div><div class="detail-description">'+esc(p.description||'')+'</div></div><div class="spec-panel" style="grid-column:1/-1"><h2>Technical Specifications</h2>'+(specs?'<table class="spec-table"><tbody>'+specs+'</tbody></table>':'<p class="detail-description">Specifications will be added soon.</p>')+'</div>';
+document.title=p.name+' | Abhi Scientific Instruments';
+}catch(e){console.error(e);el.innerHTML='<div class="error-box"><h1>Unable to load product</h1><p>'+esc(e.message||'Please try again.')+'</p><a class="btn" href="products.html">← Back to Products</a></div>'}
+})();
+</script>
+</body>
+</html>
