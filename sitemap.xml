@@ -5,4 +5,7 @@
   <url><loc>https://abhiscientificinstruments.co.in/applications.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://abhiscientificinstruments.co.in/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://abhiscientificinstruments.co.in/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://abhiscientificinstruments.co.in/product-detail.html?slug=hot-air-oven</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://abhiscientificinstruments.co.in/product-detail.html?slug=bod-incubator</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://abhiscientificinstruments.co.in/product-detail.html?slug=water-bath</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
