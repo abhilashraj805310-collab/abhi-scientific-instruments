@@ -43,6 +43,6 @@ body{background:linear-gradient(180deg,#f7fcfe 0%,#fff 38%,#f5fbfe 100%)}
 @media(max-width:720px){.nav{min-height:64px}.catalog-bar{position:relative;top:auto}.hero .actions,.products-hero .actions,.detail-actions{width:100%}.actions .btn,.detail-actions .btn{width:100%}.about-points{grid-template-columns:1fr}.p-card{min-height:0!important}.detail-image{padding:18px}.detail-image img{height:280px}.section{padding:56px 0}}
 
 /* Header company logo */
-.site-logo{display:block;width:58px;height:52px;object-fit:contain;object-position:center;flex:0 0 58px;background:#fff;border-radius:8px}
+.site-logo{display:block;width:176px;height:62px;object-fit:contain;object-position:left center;flex:0 0 176px;background:#fff;border-radius:0}
 .brand{gap:9px}
-@media(max-width:720px){.site-logo{width:52px;height:46px;flex-basis:52px}.brand{font-size:.9rem;gap:7px}}
+@media(max-width:720px){.site-logo{width:142px;height:52px;flex-basis:142px}.brand{font-size:.88rem;gap:5px}}
