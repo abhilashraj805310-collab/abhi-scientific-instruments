@@ -446,7 +446,7 @@ button{font:inherit}
 .p-card .btn{margin-top:auto;align-self:flex-start}
 .no-result{display:none;text-align:center;padding:40px;color:var(--muted);grid-column:1/-1}
 @media(max-width:720px){.catalog-bar{align-items:stretch}.search{width:100%}}
-<style id="gem-filter-css">
+
 .catalog-toolbar{position:sticky;top:76px;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 16px;margin:8px 0 16px;background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 30px rgba(3,4,94,.07);backdrop-filter:blur(14px)}
 .catalog-search{display:flex;align-items:center;gap:9px;flex:1}.catalog-search .search{height:46px;width:min(620px,100%);padding-left:12px}.search-icon{font-size:1.35rem;color:var(--blue)}
 .catalog-summary{font-size:.86rem;color:var(--muted);white-space:nowrap}.catalog-summary strong{color:var(--navy)}.catalog-summary span{margin:0 5px;color:#a4b6c2}
@@ -553,6 +553,6 @@ function apply(){
 function bind(){document.querySelectorAll('#categoryFilters input,.text-filter,#hasImage,#hasPdf').forEach(x=>x.addEventListener('change',apply));[minPrice,maxPrice].forEach(x=>x?.addEventListener('input',apply));document.querySelectorAll('.price-presets button').forEach(b=>b.addEventListener('click',()=>{minPrice.value=b.dataset.min||'';maxPrice.value=b.dataset.max||'';apply()}));search?.addEventListener('input',apply);sort?.addEventListener('change',apply);reset?.addEventListener('click',()=>{document.querySelectorAll('#categoryFilters input,.text-filter').forEach(x=>x.checked=false);if(hasImage)hasImage.checked=false;if(hasPdf)hasPdf.checked=false;if(minPrice)minPrice.value='';if(maxPrice)maxPrice.value='';if(search)search.value='';if(sort)sort.value='relevance';apply()});mobileBtn?.addEventListener('click',()=>sidebar?.classList.add('open'));closeBtn?.addEventListener('click',()=>sidebar?.classList.remove('open'))}
 bind();apply();window.addEventListener('asi:catalogue-loaded',apply);
 })();
-</script></script>
+</script>
 </body>
 </html>
