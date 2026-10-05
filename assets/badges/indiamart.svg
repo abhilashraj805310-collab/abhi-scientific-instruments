@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180"><rect width="520" height="180" fill="#fff"/><g transform="translate(35 8)"><ellipse cx="78" cy="48" rx="48" ry="42" fill="#b5122b"/><ellipse cx="118" cy="48" rx="48" ry="42" fill="#8f1026" opacity=".9"/><path d="M45 96L58 45l38 42 38-42 14 51-25-13-27 30-28-30z" fill="#fff"/><circle cx="75" cy="8" r="9" fill="#d51b32"/><circle cx="126" cy="8" r="9" fill="#d51b32"/></g><text x="12" y="158" font-family="Arial,sans-serif" font-size="56" font-weight="700" fill="#17177c">indiamart</text><text x="496" y="119" font-family="Arial" font-size="12" fill="#555">®</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257 148" role="img" aria-labelledby="title desc">
+<title id="title">IndiaMART</title><desc id="desc">IndiaMART logo</desc>
+<rect width="257" height="148" rx="8" fill="#fff"/>
+<g transform="translate(64 10)">
+  <path d="M34 4c9 0 17 5 22 13 5-8 13-13 22-13 13 0 24 10 24 23 0 8-4 15-10 19l-24 18-12-10-12 10-24-18c-6-4-10-11-10-19C10 14 21 4 34 4z" fill="#b51f36"/>
+  <path d="M34 18c5 0 9 3 12 8l10 16 10-16c3-5 7-8 12-8-2 8-7 15-15 20L56 67 49 58 42 68 35 61C25 55 18 47 16 37c5-3 11-2 15 3l4 5 8-13c-2-8-6-14-9-14z" fill="#fff"/>
+</g>
+<text x="128.5" y="112" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#17177c">indiamart</text>
+<text x="224" y="101" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#555">®</text>
+</svg>
