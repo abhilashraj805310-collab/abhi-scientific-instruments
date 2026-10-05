@@ -1,10 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257 148" role="img" aria-labelledby="title desc">
 <title id="title">IndiaMART</title><desc id="desc">IndiaMART logo</desc>
-<rect width="257" height="148" rx="8" fill="#fff"/>
-<g transform="translate(64 10)">
-  <path d="M34 4c9 0 17 5 22 13 5-8 13-13 22-13 13 0 24 10 24 23 0 8-4 15-10 19l-24 18-12-10-12 10-24-18c-6-4-10-11-10-19C10 14 21 4 34 4z" fill="#b51f36"/>
-  <path d="M34 18c5 0 9 3 12 8l10 16 10-16c3-5 7-8 12-8-2 8-7 15-15 20L56 67 49 58 42 68 35 61C25 55 18 47 16 37c5-3 11-2 15 3l4 5 8-13c-2-8-6-14-9-14z" fill="#fff"/>
+<rect width="257" height="148" fill="#fff"/>
+<g transform="translate(61 0)">
+  <ellipse cx="38" cy="9" rx="7" ry="10" fill="#b51f36"/>
+  <ellipse cx="86" cy="9" rx="12" ry="14" fill="#b51f36"/>
+  <ellipse cx="61" cy="52" rx="55" ry="43" fill="#b51f36" transform="rotate(8 61 52)"/>
+  <ellipse cx="47" cy="45" rx="35" ry="35" fill="#d9253f" opacity=".95"/>
+  <path d="M24 26 L39 26 L61 62 L83 26 L98 26 L98 78 L83 78 L83 51 L67 78 L55 78 L39 51 L39 78 L24 78 Z" fill="#fff"/>
+  <ellipse cx="44" cy="38" rx="15" ry="20" fill="#ef4055" opacity=".55"/>
 </g>
-<text x="128.5" y="112" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#17177c">indiamart</text>
-<text x="224" y="101" font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#555">®</text>
+<text x="128.5" y="125" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" letter-spacing="-1.5" fill="#17177c">indiamart</text>
+<text x="249" y="110" font-family="Arial,Helvetica,sans-serif" font-size="9" fill="#555">®</text>
 </svg>
