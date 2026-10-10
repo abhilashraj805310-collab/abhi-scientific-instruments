@@ -21,3 +21,12 @@ document.querySelectorAll('.counter').forEach(el=>{
   });
   counterObserver.observe(el);
 });
+
+/* Load ASI visitor and lead tracking on all site pages. */
+if (!document.querySelector('script[data-asi-tracking]')) {
+  const tracker = document.createElement('script');
+  tracker.src = 'assets/visitor-tracking.js?v=20261010-1';
+  tracker.async = true;
+  tracker.dataset.asiTracking = 'true';
+  document.body.appendChild(tracker);
+}
