@@ -46,3 +46,26 @@ body{background:linear-gradient(180deg,#f7fcfe 0%,#fff 38%,#f5fbfe 100%)}
 .site-logo{display:block;width:205px;height:58px;object-fit:contain;object-position:left center;flex:0 0 205px;background:transparent;border-radius:0}
 .brand{gap:9px}
 @media(max-width:720px){.site-logo{width:165px;height:50px;flex-basis:165px}.brand{font-size:.88rem;gap:5px}}
+
+
+/* Performance: skip layout/paint work for sections below the first viewport. */
+@supports (content-visibility:auto){
+  main>.section,main>.site-section,.trust-section{
+    content-visibility:auto;
+    contain-intrinsic-size:auto 650px;
+  }
+}
+/* Keep off-screen certification badges from delaying initial rendering. */
+.trust-section img{content-visibility:auto}
+@media(max-width:720px){
+  /* Reduce expensive blur, shadow and animation work on mobile devices. */
+  .nav{backdrop-filter:none}
+  .catalog-bar{backdrop-filter:none}
+  .product-showcase,.glass{backdrop-filter:none}
+  .hero-product-image,.product-showcase svg,.orb,.scan,.glass .brand-logo,.track{
+    animation:none!important;
+  }
+  .card,.stat,.app,.panel,.detail-image,.spec-panel,
+  .card:hover,.stat:hover,.app:hover{transition:none}
+  .card:hover,.stat:hover,.app:hover{transform:none}
+}
