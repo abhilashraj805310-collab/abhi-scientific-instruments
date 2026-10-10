@@ -5,11 +5,16 @@
   const SUPABASE_URL = 'https://lkeemgjfnmgymuvklyhs.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_85UNumHMaiXEu0gRHYHcwA_s33DF1hB';
   const params = new URLSearchParams(location.search);
-  const source = params.get('utm_source') || params.get('source') || document.referrer || 'Direct';
   const refHost = (() => { try { return document.referrer ? new URL(document.referrer).hostname : null; } catch (_) { return null; } })();
+  const source = String(params.get('utm_source') || params.get('source') || refHost || 'Direct').slice(0, 120);
   let sessionId = sessionStorage.getItem('asi_visitor_session');
   if (!sessionId) { sessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2)); sessionStorage.setItem('asi_visitor_session', sessionId); }
-  const path = location.pathname + location.search;
+  const safeParams = new URLSearchParams();
+  ['product', 'utm_source', 'utm_medium', 'utm_campaign'].forEach(key => {
+    const value = params.get(key);
+    if (value) safeParams.set(key, value.slice(0, 120));
+  });
+  const path = location.pathname + (safeParams.toString() ? '?' + safeParams.toString() : '');
   const product = params.get('product') || (location.pathname.includes('product') ? document.querySelector('h1')?.textContent?.trim() : null);
   import('https://esm.sh/@supabase/supabase-js@2').then(({ createClient }) => {
     const db = createClient(SUPABASE_URL, SUPABASE_KEY);
