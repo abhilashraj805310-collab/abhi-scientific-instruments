@@ -30,6 +30,28 @@
     };
     track('page_view');
     if (product) track('product_view', { product_name: product });
+    // Record only deliberate catalogue searches, not every keystroke.
+    const searchBox = document.querySelector('#productSearch');
+    if (searchBox) {
+      let lastTerm = '';
+      const recordSearch = () => {
+        const term = String(searchBox.value || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+        if (term.length < 2 || term.toLowerCase() === lastTerm.toLowerCase()) return;
+        lastTerm = term;
+        const cards = [...document.querySelectorAll('#productGrid .p-card')];
+        const matches = cards.filter(card => card.style.display !== 'none' && (card.dataset.name || card.querySelector('h2')?.textContent || '').toLowerCase().includes(term.toLowerCase()));
+        track('product_search', {
+          metadata: {
+            search_term: term,
+            results_count: matches.length,
+            matched_products: matches.slice(0, 10).map(card => (card.querySelector('h2')?.textContent || card.dataset.name || '').trim()).filter(Boolean)
+          }
+        });
+      };
+      searchBox.addEventListener('change', recordSearch);
+      searchBox.addEventListener('keydown', event => { if (event.key === 'Enter') recordSearch(); });
+      searchBox.addEventListener('blur', recordSearch);
+    }
     document.addEventListener('click', event => {
       const a = event.target.closest('a');
       if (!a) return;
