@@ -55,7 +55,7 @@ for select to authenticated using (user_id = (select auth.uid()));
 drop policy if exists "Public can record anonymous visitor events" on public.visitor_events;
 create policy "Public can record anonymous visitor events" on public.visitor_events
 for insert to anon with check (
-  event_name in ('page_view','product_view','whatsapp_click','inquiry_form_submit','phone_click','email_click')
+  event_name in ('page_view','product_view','product_search','whatsapp_click','inquiry_form_submit','phone_click','email_click')
 );
 drop policy if exists "Admins can read visitor events" on public.visitor_events;
 create policy "Admins can read visitor events" on public.visitor_events
